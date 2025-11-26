@@ -1,4 +1,3 @@
-//% color="#AA278D"
 namespace TM1638 {
 
     let strobe = DigitalPin.P0
@@ -125,13 +124,13 @@ namespace TM1638 {
      */
     function shiftIn(dataPin: DigitalPin, clockPin: DigitalPin): number {
         let value = 0
-        for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
             pins.digitalWritePin(clockPin, 1)
 
             // shift read in bit status to the index 
             // of the current bit being read LSB first
             // OR with other bits 
-            value |= (pins.digitalReadPin(dataPin) << i)
+            value |= (pins.digitalReadPin(dataPin) << j)
             pins.digitalWritePin(clockPin, 0)
         }
         return value
@@ -156,8 +155,8 @@ namespace TM1638 {
 
         pins.setPull(data, PinPullMode.PullNone)
 
-        for (let i = 0; i < 4; i++) {
-            let v = shiftIn(data, clock) << i
+        for (let k = 0; k < 4; k++) {
+            let v = shiftIn(data, clock) << k
             buttons |= v
         }
 
@@ -179,11 +178,11 @@ namespace TM1638 {
         }
 
         // loop through all inputted characters
-        for (let i = 0; i < input_text.length; i++) {
+        for (let l = 0; l < input_text.length; l++) {
 
             // call decoder function to recieve the seven segment binary for
             // the current letter
-            seven_segment_status[i] = seven_segment_decoder(input_text.charAt(i))
+            seven_segment_status[l] = seven_segment_decoder(input_text.charAt(l))
 
         }
 
@@ -215,7 +214,7 @@ namespace TM1638 {
     function update_LEDs(): void {
 
         // loop through all 8 LEDs in led_status list
-        for (let i = 0; i < 8; i++) {
+        for (let m = 0; m < 8; m++) {
 
             shiftOut(data, clock, 0x44)
             pins.digitalWritePin(strobe, 0)
@@ -223,14 +222,14 @@ namespace TM1638 {
             // convert boolean to 1 or 0
             // for current led
             let led_state: number
-            if (led_status[i]) {
+            if (led_status[m]) {
                 led_state = 1
             } else {
                 led_state = 0
             }
 
             pins.digitalWritePin(strobe, 0)
-            shiftOut(data, clock, 0xC1 + (i << 1))
+            shiftOut(data, clock, 0xC1 + (m << 1))
             shiftOut(data, clock, led_state)
             pins.digitalWritePin(strobe, 1)
         }
@@ -248,10 +247,10 @@ namespace TM1638 {
         pins.digitalWritePin(strobe, 0)
         shiftOut(data, clock, 0xC0)
 
-        for (let i = 0; i < 8; i++) {
+        for (let n = 0; n < 8; n++) {
 
-            shiftOut(data, clock, seven_segment_status[i])
-            shiftOut(data, clock, led_status[i] ? 1 : 0)
+            shiftOut(data, clock, seven_segment_status[n])
+            shiftOut(data, clock, led_status[n] ? 1 : 0)
         }
 
         pins.digitalWritePin(strobe, 1)
@@ -265,7 +264,7 @@ namespace TM1638 {
         sendCommand(0x40)
         pins.digitalWritePin(strobe, 0)
         shiftOut(data, clock, 0xC0)
-        for (let i = 0; i < 16; i++) {
+        for (let o = 0; o < 16; o++) {
             shiftOut(data, clock, 0x00)
         }
         pins.digitalWritePin(strobe, 1)
@@ -303,10 +302,10 @@ namespace TM1638 {
         let padded_text = "        " + text + "        "
 
         // loop through each 8-character slice in the padded_text
-        for (let i = 0; i <= padded_text.length - 8; i++) {
+        for (let p = 0; p <= padded_text.length - 8; p++) {
 
             // get the current 8-char text from the padded text
-            let current_text = padded_text.slice(i, i + 8)
+            let current_text = padded_text.slice(p, p + 8)
 
             // call existing show string function and
             // delay for specified time before showing the
@@ -361,10 +360,10 @@ namespace TM1638 {
 
                 // loop through all 8 bits of current
                 // each bit represents the corresponding button status
-                for (let i = 0; i < 8; i++) {
+                for (let q = 0; q < 8; q++) {
 
                     // set all bits to 0 except current bit being checked
-                    let mask = 1 << i
+                    let mask = 1 << q
 
                     // check that current button is pressed,
                     // ensure that the button state has changed since last recorded status 
@@ -373,10 +372,10 @@ namespace TM1638 {
 
                         // check if the user has created a 
                         // function block for the current button that was pressed
-                        if (button_functions[i]) {
+                        if (button_functions[q]) {
 
                             // if the user has created the function block, call the function
-                            button_functions[i](i + 1)
+                            button_functions[q](q + 1)
                         }
                     }
                 }
