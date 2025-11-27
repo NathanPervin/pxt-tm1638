@@ -82,6 +82,12 @@ namespace TM1638 {
         Default,
         //% block="P16=STB, P15=CLK, P14=DIO"
         AlternateOne,
+        //% block="P16=STB, P8=CLK, P2=DIO"
+        AlternateTwo,
+        //% block="P16=STB, P8=CLK, P1=DIO"
+        AlternateThree,
+        //% block="P16=STB, P8=CLK, P0=DIO"
+        AlternateFour
     }
 
     /**
@@ -428,10 +434,25 @@ namespace TM1638 {
             strobe = DigitalPin.P0
             clock = DigitalPin.P1
             data = DigitalPin.P2
-        } else {
+        } else if (pins == PinOptions.AlternateOne) {
             strobe = DigitalPin.P16
             clock = DigitalPin.P15
             data = DigitalPin.P14
+        }
+        else if (pins == PinOptions.AlternateTwo) {
+            strobe = DigitalPin.P16
+            clock = DigitalPin.P8
+            data = DigitalPin.P2
+        }
+        else if (pins == PinOptions.AlternateThree) {
+            strobe = DigitalPin.P16
+            clock = DigitalPin.P8
+            data = DigitalPin.P1
+        }
+        else {
+            strobe = DigitalPin.P16
+            clock = DigitalPin.P8
+            data = DigitalPin.P0
         }
 
         initialize()
