@@ -1,8 +1,3 @@
-input.onButtonPressed(Button.A, function () {
-    TM1638.choosePinOption(TM1638.PinOptions.AlternateFour)
-    TM1638.setBrightness(7)
-    TM1638.scrollText("test0123456", 5)
-})
 namespace TM1638 {
 
     let strobe = DigitalPin.P0
