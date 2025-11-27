@@ -12,6 +12,8 @@ namespace TM1638 {
     let button_functions: ((btn: number) => void)[] = []
     let monitor_buttons_enable = false // true=monitor buttons, false=don't monitor buttons
 
+    let button_poll_rate = 50 // ms
+
     const seven_segment_decoder_table: { [key: string]: number } = {
         "0": 0x3f,
         "1": 0x06,
@@ -65,17 +67,6 @@ namespace TM1638 {
         Digit7 = 7,
         //%block="8"
         Digit8 = 8
-    }
-
-    export enum button_poll_rate {
-        //% block="50 ms"
-        Rate50 = 50,
-        //% block="100 ms"
-        Rate100 = 100,
-        //% block="150 ms"
-        Rate150 = 150,
-        //% block="200 ms"
-        Rate200 = 200
     }
 
     export enum PinOptions {
@@ -362,9 +353,8 @@ namespace TM1638 {
      * which dictates generally how long the user must
      * press and hold a button for an positive press reading
      */
-    //% block="start checking buttons every %rate" weight=3
-    //% rate.defl=TM1638.button_poll_rate.Rate50
-    export function startCheckingButtons(rate: button_poll_rate): void {
+    //% block="start checking buttons weight=3
+    export function startCheckingButtons(): void {
 
         // if the buttons are already being checked and the
         // function is called again, return to avoid two
@@ -407,7 +397,7 @@ namespace TM1638 {
 
                 // save the current button states and delay for specified time
                 lastButtonState = current
-                basic.pause(rate)
+                basic.pause(button_poll_rate)
             }
         })
     }
