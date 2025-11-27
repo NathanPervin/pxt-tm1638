@@ -77,6 +77,13 @@ namespace TM1638 {
         Rate200 = 200
     }
 
+    export enum PinOptions {
+        //% block="P0=STB, P1=CLK, P2=DIO"
+        Default,
+        //% block="P16=STB, P15=CLK, P14=DIO"
+        AlternateOne,
+    }
+
     /**
      * Converts input char to corresponding seven segment 
      * binary value, if the character is not found in the
@@ -409,6 +416,25 @@ namespace TM1638 {
         // ie. button 1 will call function in index position 0,
         // button 8 will call function in index position 7 
         button_functions[btn - 1] = button_function
+    }
+
+    /**
+     * Allows the user to choose between using P0,P1, and P2
+     * or P16, P15, and P14
+     */
+    //% block="use pins %pins"
+    export function choosePinOption(pins: PinOptions): void {
+        if (pins == PinOptions.Default) {
+            strobe = DigitalPin.P0
+            clock = DigitalPin.P1
+            data = DigitalPin.P2
+        } else {
+            strobe = DigitalPin.P16
+            clock = DigitalPin.P15
+            data = DigitalPin.P14
+        }
+
+        initialize()
     }
 
     /*
