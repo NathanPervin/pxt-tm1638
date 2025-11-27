@@ -1,3 +1,4 @@
+//% color="#0057A6"
 namespace TM1638 {
 
     let strobe = DigitalPin.P0
