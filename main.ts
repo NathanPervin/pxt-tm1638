@@ -333,17 +333,27 @@ namespace TM1638 {
      * Allows the user to enable the decimal point on a 
      * specific seven segment display (1 through 8)
      */
-    //%block="turn on decimal point at digit %digit" weight=4
+    //%block="turn decimal point $state at digit %digit" weight=4
     //% digit.defl=TM1638.one_through_eight.Digit1
-    export function turnOnDecimalPoint(digit: one_through_eight): void {
+    //% state.shadow="toggleOnOff" state.defl=true
+    export function setDecimalPoint(digit: one_through_eight, state: boolean): void {
         let index = digit - 1
 
-        // decimal point of the seven segment is
-        // controlled by the 7th bit: 0b10000000 = 0x80
-        // so, OR existing seven segment value with a set 7th bit
-        seven_segment_status[index] |= 0x80
+        // decimal point is controlled by the 7th bit
+        // so a seven segment binary of 0x80=0b10000000
+        // will enable the decimal point
+        if (state) {
+            seven_segment_status[index] |= 0x80
+        } else {
+            // to clear the decimal point, AND
+            // with the inverse of 0b10000000
+            // to maintain all other bits but clear the decimal bit
+            seven_segment_status[index] &= ~0x80
+        }
+
         update_seven_segments()
     }
+
 
     /**
      * Allows the user to start polling the button status
