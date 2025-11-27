@@ -185,7 +185,7 @@ namespace TM1638 {
     /**
      * Allows the user to show a string on the 7-segment display 
      */
-    //%block
+    //%block weight=7
     export function showString(input_text: string): void {
         input_text = input_text.toUpperCase()
         seven_segment_status = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -216,6 +216,7 @@ namespace TM1638 {
     //% led4.shadow="toggleOnOff" led5.shadow="toggleOnOff" led6.shadow="toggleOnOff" led7.shadow="toggleOnOff"
     //% led0.defl=false led1.defl=false led2.defl=false led3.defl=false
     //% led4.defl=false led5.defl=false led6.defl=false led7.defl=false
+    //% weight=5
     export function setLEDs(
         led0: boolean, led1: boolean, led2: boolean, led3: boolean,
         led4: boolean, led5: boolean, led6: boolean, led7: boolean
@@ -277,7 +278,7 @@ namespace TM1638 {
     /* 
      * Manufacturer provided method of resetting the board
      */
-    //% block="clear board"
+    //% block="clear board" weight=8
     export function reset(): void {
         sendCommand(0x40)
         pins.digitalWritePin(strobe, 0)
@@ -304,7 +305,7 @@ namespace TM1638 {
      * Text can be any length so the user can display more than
      * 8 characters
      */
-    //% block="scroll text %text with speed %speed"
+    //% block="scroll text %text with speed %speed" weight=6
     //% speed.min=1 speed.max=10 speed.defl=5
     export function scrollText(text: string, speed: number): void {
 
@@ -337,7 +338,7 @@ namespace TM1638 {
      * Allows the user to enable the decimal point on a 
      * specific seven segment display (1 through 8)
      */
-    //%block="turn on decimal point at digit %digit"
+    //%block="turn on decimal point at digit %digit" weight=4
     //% digit.defl=TM1638.one_through_eight.Digit1
     export function turnOnDecimalPoint(digit: one_through_eight): void {
         let index = digit - 1
@@ -355,7 +356,7 @@ namespace TM1638 {
      * which dictates generally how long the user must
      * press and hold a button for an positive press reading
      */
-    //% block="start checking buttons every %rate"
+    //% block="start checking buttons every %rate" weight=3
     //% rate.defl=TM1638.button_poll_rate.Rate50
     export function startCheckingButtons(rate: button_poll_rate): void {
 
@@ -409,7 +410,7 @@ namespace TM1638 {
      * Allows the user to disable polling buttons
      * Frees up TM1638 board I/O for other uses
      */
-    //% block="stop checking buttons"
+    //% block="stop checking buttons" weight=1
     export function stopCheckingButtons(): void {
         monitor_buttons_enable = false
     }
@@ -418,7 +419,7 @@ namespace TM1638 {
      * Allows the user to execute a function when a specific button
      * is pressed
      */
-    //% block="on button %btn pressed"
+    //% block="on button %btn pressed" weight=2
     //% btn.defl=TM1638.one_through_eight.Digit1
     export function onButtonPressed(btn: one_through_eight, button_function: () => void): void {
 
@@ -433,7 +434,7 @@ namespace TM1638 {
      * Allows the user to choose between using P0,P1, and P2
      * or P16, P15, and P14
      */
-    //% block="use pins %pins"
+    //% block="use pins %pins" weight=10
     export function choosePinOption(pins: PinOptions): void {
         if (pins == PinOptions.Default) {
             strobe = DigitalPin.P0
@@ -466,7 +467,7 @@ namespace TM1638 {
     /*
      * Allows the user to set the brightness of the board
      */ 
-    //% block="set brightness to %level"
+    //% block="set brightness to %level" weight=9
     //% level.min=0 level.max=7
     export function setBrightness(level: number): void {
         sendCommand(0x88 | level)
@@ -476,7 +477,7 @@ namespace TM1638 {
      * Must be placed before trying to use any other block
      * ideally place in "on start"
      */
-    //%block="initialize"
+    //%block="initialize" weight=11
     export function initialize(): void {
         basic.pause(50)
         setup()
