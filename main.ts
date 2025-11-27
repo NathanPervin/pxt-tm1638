@@ -1,4 +1,3 @@
-//% color="#0057A6"
 namespace TM1638 {
 
     let strobe = DigitalPin.P0
@@ -353,7 +352,7 @@ namespace TM1638 {
      * which dictates generally how long the user must
      * press and hold a button for an positive press reading
      */
-    //% block="start checking buttons weight=3
+    //% block="start checking buttons" weight=3
     export function startCheckingButtons(): void {
 
         // if the buttons are already being checked and the
