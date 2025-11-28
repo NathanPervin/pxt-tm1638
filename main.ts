@@ -170,7 +170,10 @@ namespace TM1638 {
     }
 
     /**
-     * Allows the user to show a string on the 7-segment display 
+     * Displays a string on the 7-segment display.
+     * Maximum 8 characters in length, characters that
+     * can't be represented on a seven segment display
+     * will instead be blank.
      */
     //%block weight=7
     export function showString(input_text: string): void {
@@ -196,7 +199,7 @@ namespace TM1638 {
     }
 
     /**
-     * Allows the user to set the status of the 8 LEDs
+     * Sets the status of the 8 LEDs. 
      */
     //% block="turn ON/OFF LEDs $txt LED1 =$led0 LED2 =$led1 LED3 =$led2 LED4 =$led3 LED5 =$led4 LED6 =$led5 LED7 =$led6 LED8 =$led7"
     //% txt.shadow="" led0.shadow="toggleOnOff" led1.shadow="toggleOnOff" led2.shadow="toggleOnOff" led3.shadow="toggleOnOff"
@@ -262,8 +265,8 @@ namespace TM1638 {
         pins.digitalWritePin(strobe, 1)
     }
 
-    /* 
-     * Manufacturer provided method of resetting the board
+    /** 
+     * Clears the seven segment displays and LEDs.
      */
     //% block="clear board" weight=8
     export function reset(): void {
@@ -288,9 +291,8 @@ namespace TM1638 {
     }
 
     /**
-     * Allows the user to scroll through text.
-     * Text can be any length so the user can display more than
-     * 8 characters
+     * Scrolls through input text from right to left at a specified speed.
+     * The text can be any length. 
      */
     //% block="scroll text %text with speed %speed" weight=6
     //% speed.min=1 speed.max=10 speed.defl=5
@@ -322,8 +324,8 @@ namespace TM1638 {
     }
 
     /**
-     * Allows the user to enable the decimal point on a 
-     * specific seven segment display (1 through 8)
+     * Enables or disables the decimal point on a 
+     * specified seven segment display.
      */
     //%block="turn decimal point $state at digit %digit" weight=4
     //% digit.defl=TM1638.one_through_eight.Digit1
@@ -346,12 +348,8 @@ namespace TM1638 {
         update_seven_segments()
     }
 
-
     /**
-     * Allows the user to start polling the button status
-     * User can select between 4 different polling rates
-     * which dictates generally how long the user must
-     * press and hold a button for an positive press reading
+     * Starts checking the button status.
      */
     //% block="start checking buttons" weight=3
     export function startCheckingButtons(): void {
@@ -402,18 +400,17 @@ namespace TM1638 {
         })
     }
 
-    /*
-     * Allows the user to disable polling buttons
-     * Frees up TM1638 board I/O for other uses
+    /**
+     * Stops checking the button status.
      */
     //% block="stop checking buttons" weight=1
     export function stopCheckingButtons(): void {
         monitor_buttons_enable = false
     }
 
-    /*
-     * Allows the user to execute a function when a specific button
-     * is pressed
+    /**
+     * This function will be run when the buttons have started
+     * being checked and when the specified button was pressed.
      */
     //% block="on button %btn pressed" weight=2
     //% btn.defl=TM1638.one_through_eight.Digit1
@@ -426,8 +423,8 @@ namespace TM1638 {
         button_functions[btn - 1] = button_function
     }
 
-    /*
-     * Allows the user to set the brightness of the board
+    /** 
+     * Sets the brightness of the board. 
      */
     //% block="set brightness to %level" weight=9
     //% level.min=0 level.max=7
@@ -435,6 +432,10 @@ namespace TM1638 {
         sendCommand(0x88 | level)
     }
 
+    /*
+     * This function fixes a runtime error seen only
+     * when using test.ts
+     */
     function initialize_variables(): void {
 
         led_status = [false, false, false, false, false, false, false, false]
@@ -457,7 +458,7 @@ namespace TM1638 {
         }
     }
 
-    function initialize(): void {
+    function initialize_internal(): void {
         basic.pause(50)
         initialize_variables()
         setup()
@@ -465,11 +466,10 @@ namespace TM1638 {
     }
 
     /**
-     * Allows the user to choose between using P0,P1, and P2
-     * or P16, P15, and P14
+     * Initializes the board using the specified pins.
      */
     //% block="initialize with pins %pins" weight=10
-    export function choosePinOption(pins: PinOptions): void {
+    export function initialize(pins: PinOptions): void {
         if (pins == PinOptions.Default) {
             strobe = DigitalPin.P0
             clock = DigitalPin.P1
@@ -495,7 +495,7 @@ namespace TM1638 {
             data = DigitalPin.P0
         }
 
-        initialize()
+        initialize_internal()
     }
 
 }
