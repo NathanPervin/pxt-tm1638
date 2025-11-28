@@ -9,13 +9,12 @@ namespace TM1638 {
     let seven_segment_status: number[] = [0, 0, 0, 0, 0, 0, 0, 0]
 
     let lastButtonState = 0
-    //let button_functions: ((btn: number) => void)[] = []
-    let button_functions: ((btn: number) => void)[] = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]
+    let button_functions: ((btn: number) => void)[] = []
     let monitor_buttons_enable = false // true=monitor buttons, false=don't monitor buttons
 
     let button_poll_rate = 50 // ms
 
-    const seven_segment_decoder_table: { [key: string]: number } = {
+    let seven_segment_decoder_table: { [key: string]: number } = {
         "0": 0x3f,
         "1": 0x06,
         "2": 0x5b,
@@ -427,11 +426,49 @@ namespace TM1638 {
         button_functions[btn - 1] = button_function
     }
 
+    /*
+     * Allows the user to set the brightness of the board
+     */
+    //% block="set brightness to %level" weight=9
+    //% level.min=0 level.max=7
+    export function setBrightness(level: number): void {
+        sendCommand(0x88 | level)
+    }
+
+    function initialize_variables(): void {
+
+        led_status = [false, false, false, false, false, false, false, false]
+        seven_segment_status = [0, 0, 0, 0, 0, 0, 0, 0]
+        lastButtonState = 0
+
+        monitor_buttons_enable = false
+        button_poll_rate = 50
+        button_functions = []
+
+        seven_segment_decoder_table = {
+            "0": 0x3f, "1": 0x06, "2": 0x5b, "3": 0x4f,
+            "4": 0x66, "5": 0x6d, "6": 0x7d, "7": 0x07,
+            "8": 0x7f, "9": 0x6f, "A": 0x77, "B": 0x7c,
+            "C": 0x39, "D": 0x5e, "E": 0x79, "F": 0x71,
+            "G": 0x3d, "H": 0x76, "I": 0x06, "J": 0x1e,
+            "L": 0x38, "N": 0x54, "O": 0x3f, "P": 0x73,
+            "Q": 0x67, "R": 0x50, "S": 0x6d, "T": 0x78,
+            "U": 0x3e, "Y": 0x6e, "Z": 0x5b, " ": 0x00, "-": 0x40
+        }
+    }
+
+    function initialize(): void {
+        basic.pause(50)
+        initialize_variables()
+        setup()
+        basic.pause(100)
+    }
+
     /**
      * Allows the user to choose between using P0,P1, and P2
      * or P16, P15, and P14
      */
-    //% block="use pins %pins" weight=10
+    //% block="initialize with pins %pins" weight=10
     export function choosePinOption(pins: PinOptions): void {
         if (pins == PinOptions.Default) {
             strobe = DigitalPin.P0
@@ -459,26 +496,6 @@ namespace TM1638 {
         }
 
         initialize()
-    }
-
-    /*
-     * Allows the user to set the brightness of the board
-     */ 
-    //% block="set brightness to %level" weight=9
-    //% level.min=0 level.max=7
-    export function setBrightness(level: number): void {
-        sendCommand(0x88 | level)
-    }
-
-    /*
-     * Must be placed before trying to use any other block
-     * ideally place in "on start"
-     */
-    //%block="initialize" weight=11
-    export function initialize(): void {
-        basic.pause(50)
-        setup()
-        basic.pause(100)
     }
 
 }
