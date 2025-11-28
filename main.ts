@@ -9,7 +9,8 @@ namespace TM1638 {
     let seven_segment_status: number[] = [0, 0, 0, 0, 0, 0, 0, 0]
 
     let lastButtonState = 0
-    let button_functions: ((btn: number) => void)[] = []
+    //let button_functions: ((btn: number) => void)[] = []
+    let button_functions: ((btn: number) => void)[] = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]
     let monitor_buttons_enable = false // true=monitor buttons, false=don't monitor buttons
 
     let button_poll_rate = 50 // ms
