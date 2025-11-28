@@ -198,7 +198,7 @@ namespace TM1638 {
     /**
      * Allows the user to set the status of the 8 LEDs
      */
-    //% block="Turn ON/OFF LEDs $txt LED1 =$led0 LED2 =$led1 LED3 =$led2 LED4 =$led3 LED5 =$led4 LED6 =$led5 LED7 =$led6 LED8 =$led7"
+    //% block="turn ON/OFF LEDs $txt LED1 =$led0 LED2 =$led1 LED3 =$led2 LED4 =$led3 LED5 =$led4 LED6 =$led5 LED7 =$led6 LED8 =$led7"
     //% txt.shadow="" led0.shadow="toggleOnOff" led1.shadow="toggleOnOff" led2.shadow="toggleOnOff" led3.shadow="toggleOnOff"
     //% led4.shadow="toggleOnOff" led5.shadow="toggleOnOff" led6.shadow="toggleOnOff" led7.shadow="toggleOnOff"
     //% led0.defl=false led1.defl=false led2.defl=false led3.defl=false
