@@ -1,4 +1,4 @@
-## initialize Block
+## initialize with pins Block
 <img src="images/initializeBlock.png" alt="initialize block" width="200px">
 
 This block begins communication with the TM1638 board. Place this block before using any other TM1638 blocks. It is recommended to place this in the "on start" block as such:
@@ -7,23 +7,18 @@ This block begins communication with the TM1638 board. Place this block before u
 <img src="images/initializeBlockExample.png" alt="initialize block example" width="200px">
 
 ```javascript
-TM1638.initialize()
+TM1638.initialize(TM1638.PinOptions.Default)
 ```
 
-## use pins Block
-<img src="images/usePinsBlock.png" alt="use pins block" width="200px">
-
-This block allows the user to change which pins of the micro:bit will be used. The default pins are P0, P1, and P2 so these pins will be used if the use pins block is not placed. The alternative pin options are:
+This block also allows the user to change which pins of the micro:bit will be used. The default pins are P0, P1, and P2.
+The alternative pin options are:
 
 <img src="images/usePinsBlockOptions.png" alt="use pins block options" width="200px">
 
 To utilize pins other than P0, P1, P2, 3V, and GND, an edge connector device will need to be used to make additional pins accessible.
 
-### Example Usage
-<img src="images/usePinsBlockExample.png" alt="use pins block example" width="200px">
-
 ```javascript
-TM1638.choosePinOption(TM1638.PinOptions.Default)
+TM1638.initialize(TM1638.PinOptions.Default)
 ```
 To use different pins change 'Default' to 'AlternateOne', 'AlternateTwo', 'AlternateThree', or 'AlternateFour' depending on which pins are connected to your micro:bit based on the table below:
 | Option          | Pins Used                       |
