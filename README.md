@@ -17,9 +17,6 @@ The alternative pin options are:
 
 To utilize pins other than P0, P1, P2, 3V, and GND, an edge connector device will need to be used to make additional pins accessible.
 
-```javascript
-TM1638.initialize(TM1638.PinOptions.Default)
-```
 To use different pins change 'Default' to 'AlternateOne', 'AlternateTwo', 'AlternateThree', or 'AlternateFour' depending on which pins are connected to your micro:bit based on the table below:
 | Option          | Pins Used                       |
 |-----------------|---------------------------------|
