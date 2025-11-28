@@ -26,8 +26,6 @@ To use different pins change 'Default' to 'AlternateOne', 'AlternateTwo', 'Alter
 | AlternateThree  | P16 = STB, P8 = CLK, P1 = DIO   |
 | AlternateFour   | P16 = STB, P8 = CLK, P0 = DIO   |
 
-> **Note:** The use pins block will automatically initialize the board so a separate initialize block is not required when using the use pins block.
-
 ## set brightness to Block
 <img src="images/setBrightnessToBlock.png" alt="set brightness to block" width="200px">
 
