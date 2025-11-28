@@ -154,6 +154,10 @@ TM1638.onButtonPressed(TM1638.one_through_eight.Digit1, function () {
 ```
 To use any other buttons simply change 'Digit1' to 'Digit2' to use button 2 and 'Digit3' to use button 3, etc.
 
+More information about the TM1638 board can be found [here](https://www.handsontec.com/dataspecs/display/TM1638.pdf).
+TM1638 boards can be purchased cheaply from many online retailers. For the development of this extenstion, the HiLetgo TM1638 board was used, purchased from Amazon [here](https://a.co/d/8HQiDVi).
+
+
 > Open this page at [https://nathanpervin.github.io/pxt-tm1638/](https://nathanpervin.github.io/pxt-tm1638/)
 
 ## Use as Extension
