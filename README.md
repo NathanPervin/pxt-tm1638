@@ -1,4 +1,4 @@
-## initialize with pins Block
+## initialize Block
 
 This block begins communication with the TM1638 board. Place this block before using any other TM1638 blocks. It is recommended to place this in the "on start" block.
 
