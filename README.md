@@ -21,7 +21,7 @@ To use different pins change 'Default' to 'AlternateOne', 'AlternateTwo', 'Alter
 | AlternateThree  | P16 = STB, P8 = CLK, P1 = DIO   |
 | AlternateFour   | P16 = STB, P8 = CLK, P0 = DIO   |
 
-## set brightness to Block #tm1638-setBrightness
+## set brightness to Block #tm1638-setbrightness
 
 This block changes the board's brightness. A brightness of 0 is the least bright and a brightness of 7 is the most bright.
 
@@ -42,7 +42,7 @@ This block will turn off all of the seven segments and all of the LEDs.
 tm1638.reset()
 ```
 
-## show string Block #tm1638-showString
+## show string Block #tm1638-showstring
 
 This block will display the entered text on the 8 seven segment displays. Any text entered above 8 characters will not be shown. Characters that cannot be represented on a seven segment display such as K, M, V, W, X, and special characters will instead be shown as space character (no segments will be on). Characters can be entered in either lowercase or uppercase; however, they will be displayed on the seven-segment display in the most legible way for each character.
 
@@ -51,7 +51,7 @@ This block will display the entered text on the 8 seven segment displays. Any te
 tm1638.showString("hello")
 ```
 
-## scroll text Block #tm1638-scrollText
+## scroll text Block #tm1638-scrolltext
 
 This block will scroll text from right to left. The allowed characters follow the same rules as the show string block however, more than 8 characters can be used.
 
@@ -62,7 +62,7 @@ tm1638.scrollText("test0123456789", 5)
 
 The first input is the string to be displayed. The second input is the speed, this should be an integer from 1 to 10 (10 is fastest, 1 is slowest)
 
-## Turn ON/OFF LEDs #tm1638-setLEDs
+## Turn ON/OFF LEDs #tm1638-setleds
 
 This block allows the user to enable or disable any of the 8 LEDs.
 
@@ -81,7 +81,7 @@ false
 ```
 the first input is the first LED, a value of true means the LED is on and a value of false means the LED is off. Each subsequent input corresponds to the next LED so the 2nd input is the state of the 2nd LED, etc.
 
-## turn decimal point <ON/OFF> at digit block #tm1638-setDecimalPoint
+## turn decimal point <ON/OFF> at digit block #tm1638-setdecimalpoint
 
 Turns on or off the decimal point on a specified seven segment display.
 
@@ -92,14 +92,14 @@ tm1638.setDecimalPoint(tm1638.SelectDigit.One, true)
 
 Change 'One' in the first input to 'Two', 'Three", etc. to change which seven segment decimal will be modified. The second input is true for turning on the decimal point and false for turning off the decimal point.
 
-## Buttons Blocks #tm1638-startCheckingButtons 
+## Buttons Blocks #tm1638-startcheckingbuttons 
  
 To execute a function when a button was pressed, first start checking the buttons with:
 ```javascript
 tm1638.startCheckingButtons()
 ```
 
-## on button pressed Block #tm1638-onButtonPressed
+## on button pressed Block #tm1638-onbuttonpressed
 
 To execute a function when a button was pressed, use this after using startCheckingButtons
 
@@ -121,7 +121,7 @@ tm1638.onButtonPressed(tm1638.SelectDigit.One, function () {
 
 > **Note:** Button presses won't be registered while the screen is still scrolling text.
 
-## stop checking buttons Block #tm1638-stopCheckingButtons
+## stop checking buttons Block #tm1638-stopcheckingbuttons
 
 To disable the button presses executing the functions, use this block:
 
