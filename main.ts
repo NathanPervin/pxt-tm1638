@@ -1,3 +1,6 @@
+/*
+ * Extension for Controlling a TM1638 Board
+ */ 
 //% color="#0057A6"
 //% block="TM1638"
 namespace tm1638 {
