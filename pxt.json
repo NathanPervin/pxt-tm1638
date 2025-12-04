@@ -1,7 +1,7 @@
 {
     "name": "tm1638",
     "version": "1.0.0",
-    "description": "",
+    "description": "MakeCode extension for controlling the common TM1638 board.",
     "license": "MIT",
     "dependencies": {
         "core": "*"
