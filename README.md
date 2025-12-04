@@ -92,19 +92,23 @@ tm1638.setDecimalPoint(tm1638.SelectDigit.One, true)
 
 Change 'One' in the first input to 'Two', 'Three", etc. to change which seven segment decimal will be modified. The second input is true for turning on the decimal point and false for turning off the decimal point.
 
-## Buttons Blocks #tm1638-startCheckingButtons #tm1638-onButtonPressed #tm1638-stopCheckingButtons
+## Buttons Blocks #tm1638-startCheckingButtons 
  
 To execute a function when a button was pressed, first start checking the buttons with:
 ```javascript
 tm1638.startCheckingButtons()
 ```
 
-Then use
+## on button pressed Block #tm1638-onButtonPressed
+
+To execute a function when a button was pressed, use this after using startCheckingButtons
+
 ```javascript
 tm1638.onButtonPressed(tm1638.SelectDigit.One, function () {
     // function code goes here
 })
 ```
+> **Note:** onButtonPressed must come after startCheckingButtons, using the blocks instead of javascript does not guarantee this to be correct by default.
 
 ### Example
 ```javascript
@@ -116,6 +120,14 @@ tm1638.onButtonPressed(tm1638.SelectDigit.One, function () {
 ```
 
 > **Note:** Button presses won't be registered while the screen is still scrolling text.
+
+## stop checking buttons Block #tm1638-stopCheckingButtons
+
+To disable the button presses executing the functions, use this block:
+
+```javascript
+tm1638.stopCheckingButtons()
+```
 
 To use any other buttons simply change 'One' to 'Two' to use button 2 and 'Three' to use button 3, etc.
 
