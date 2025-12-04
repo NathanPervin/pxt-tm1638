@@ -25,9 +25,9 @@ tm1638.showString("")
 basic.pause(200)
 
 for (let i = 1; i <= 8; i++) {
-    tm1638.setDecimalPoint(i as tm1638.one_through_eight, true)
+    tm1638.setDecimalPoint(i as tm1638.SelectDigit, true)
     basic.pause(250)
-    tm1638.setDecimalPoint(i as tm1638.one_through_eight, false)
+    tm1638.setDecimalPoint(i as tm1638.SelectDigit, false)
 }
 
 tm1638.scrollText("test0123456789", 5)
