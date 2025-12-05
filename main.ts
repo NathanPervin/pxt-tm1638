@@ -345,7 +345,7 @@ namespace tm1638 {
      * @param state the state of the decimal true for on, false for off eg. true
      */
     //%block="turn decimal point $state at digit %digit" weight=4
-    //% digit.defl=TM1638.SelectDigit.One
+    //% digit.defl=tm1638.SelectDigit.One
     //% state.shadow="toggleOnOff" state.defl=true
     export function setDecimalPoint(digit: SelectDigit, state: boolean): void {
         let index = digit - 1
@@ -432,7 +432,7 @@ namespace tm1638 {
      * @param buttonFunction the function that will be called, eg. function () {tm1638.scrollText("button 1", 5)}
      */
     //% block="on button %btn pressed" weight=2
-    //% button.defl=TM1638.SelectDigit.One
+    //% button.defl=tm1638.SelectDigit.One
     export function onButtonPressed(button: SelectDigit, buttonFunction: () => void): void {
 
         // adds a reference to a function to buttonFunctions as a list element
