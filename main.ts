@@ -461,10 +461,7 @@ namespace tm1638 {
         ledStatus = [false, false, false, false, false, false, false, false]
         sevenSegmentStatus = [0, 0, 0, 0, 0, 0, 0, 0]
         lastButtonState = 0
-
-        monitorButtonsEnable = false
         buttonPollRate = 50
-        buttonFunctions = []
 
         sevenSegmentDecoderTable = {
             "0": 0x3f, "1": 0x06, "2": 0x5b, "3": 0x4f,
