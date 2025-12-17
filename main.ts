@@ -51,7 +51,9 @@ namespace tm1638 {
         "Y": 0x6e,
         "Z": 0x5b,
         " ": 0x00,
-        "-": 0x40
+        "-": 0x40,
+        "=": 0x48,
+        "_": 0x08
     }
 
     export enum SelectDigit {
