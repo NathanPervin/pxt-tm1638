@@ -108,7 +108,6 @@ tm1638.onButtonPressed(tm1638.SelectDigit.One, function () {
     // function code goes here
 })
 ```
-> **Note:** onButtonPressed must come after startCheckingButtons, using the blocks instead of javascript does not guarantee this to be correct by default.
 
 ### Example
 ```javascript
