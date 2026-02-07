@@ -6,7 +6,8 @@ Then will show the string LO on the seven segments and will be dim.
 Then will show the string HIGH on the seven segments and be bright.
 Then will show the string test0123 on the seven segments
 Then the decimal point will turn on and off sequentially from left to right.
-Lastly, it will scroll through the text test0123456789
+Then it will scroll through the text test0123456789
+Lastly, it will turn on LED1, then turn it off after 2 seconds
 */
 tm1638.initialize(tm1638.PinOptions.Default)
 
@@ -31,3 +32,7 @@ for (let i = 1; i <= 8; i++) {
 }
 
 tm1638.scrollText("test0123456789", 5)
+tm1638.reset()
+tm1638.setLED(tm1638.SelectDigit.One, true)
+basic.pause(2000)
+tm1638.setLED(tm1638.SelectDigit.One, false)

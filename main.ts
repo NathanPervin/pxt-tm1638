@@ -454,6 +454,20 @@ namespace tm1638 {
         sendCommand(0x88 | level)
     }
 
+    /**
+     * Enables or disables a specified LED 
+     * @param digit the led to be changed, eg. tm1638.SelectDigit.One
+     * @param state the state of the LED true for on, false for off eg. true
+     */
+    //%block="turn LED $state at digit %digit" weight=8
+    //% digit.defl=tm1638.SelectDigit.One
+    //% state.shadow="toggleOnOff" state.defl=true
+    export function setLED(digit: SelectDigit, state: boolean): void {
+        let index = digit - 1
+        ledStatus[index] = state 
+        updateLEDs()
+    }
+
     /*
      * This function fixes a runtime error seen only
      * when using test.ts
