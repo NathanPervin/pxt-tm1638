@@ -81,6 +81,17 @@ false
 ```
 the first input is the first LED, a value of true means the LED is on and a value of false means the LED is off. Each subsequent input corresponds to the next LED so the 2nd input is the state of the 2nd LED, etc.
 
+## turn led <ON/OFF> at digit block #tm1638-setled
+
+This block allows the user to enable or disable a specific LED without modifying the rest.
+
+### Example
+```javascript
+tm1638.setLED(tm1638.SelectDigit.One, true)
+```
+
+Change 'One' in the first input to 'Two', 'Three", etc. to change which LED will be modified. The second input is true for turning on the LED and false for turning off the LED.
+
 ## turn decimal point <ON/OFF> at digit block #tm1638-setdecimalpoint
 
 Turns on or off the decimal point on a specified seven segment display.
