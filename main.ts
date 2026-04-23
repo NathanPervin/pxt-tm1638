@@ -303,6 +303,10 @@ namespace tm1638 {
     function setup(): void {
         sendCommand(0x8F)
         reset()
+        setBrightness(0)
+        basic.pause(500)
+        setBrightness(7)
+        basic.pause(500)
     }
 
     /**

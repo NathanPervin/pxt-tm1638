@@ -9,6 +9,7 @@ Then the decimal point will turn on and off sequentially from left to right.
 Then it will scroll through the text test0123456789
 Lastly, it will turn on LED1, then turn it off after 2 seconds
 */
+
 tm1638.initialize(tm1638.PinOptions.Default)
 
 tm1638.setLEDs(true, true, true, true, true, true, true, true)
